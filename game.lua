@@ -126,24 +126,6 @@ function gameLoveDraw()
 		end
 	end
 	
-	-- check what we'd hit if we fired
-	local hitType, hitX, hitY, hitNode, hitPath = collisionAll(A, B, C)
-	
-	-- highlight the node we'd hit
-	if(hitType == "node") then
-		--love.graphics.circle("fill", node[hitNode.row][hitNode.column].x, node[hitNode.row][hitNode.column].y, radiusNode, 100)
-	end
-	
-	-- show what we'd hit
-	local oldHitX, oldHitY = x0, y0
-	for i = 1, #hitPath, 1 do
-		--love.graphics.print("i: " .. i .. " x: " .. hitPath[i].x .. " y: " .. hitPath[i].y, 15 - width / 2, 300 + 15 * i)
-		love.graphics.line(oldHitX, oldHitY, hitPath[i].x, hitPath[i].y)
-		oldHitX, oldHitY = hitPath[i].x, hitPath[i].y
-	end
-	
-	love.graphics.circle("line", hitX, hitY, radiusNode, 100)
-	
 	-- draw the aim cone
 	conePolygon = aimConeCoordinates(A, B, C)
 	
@@ -178,7 +160,25 @@ function gameLoveDraw()
 	love.graphics.print("DANGER: " .. danger .. "/" .. dangerMax, wallLeftX + 5, y0 - lineHeight - 5)
 	
 	-- debug info
-	if false then
+	if true then
+		-- check what we'd hit if we fired
+		local hitType, hitX, hitY, hitNode, hitPath = collisionAll(A, B, C)
+		
+		-- highlight the node we'd hit
+		if(hitType == "node") then
+			--love.graphics.circle("fill", node[hitNode.row][hitNode.column].x, node[hitNode.row][hitNode.column].y, radiusNode, 100)
+		end
+		
+		-- show what we'd hit
+		local oldHitX, oldHitY = x0, y0
+		for i = 1, #hitPath, 1 do
+			--love.graphics.print("i: " .. i .. " x: " .. hitPath[i].x .. " y: " .. hitPath[i].y, 15 - width / 2, 300 + 15 * i)
+			love.graphics.line(oldHitX, oldHitY, hitPath[i].x, hitPath[i].y)
+			oldHitX, oldHitY = hitPath[i].x, hitPath[i].y
+		end
+		
+		love.graphics.circle("line", hitX, hitY, radiusNode, 100)
+		
 		love.graphics.print("radiusCollision: " .. radiusCollision, wallLeftX + 5, bufferBottom + 5 + 15 * 0)
 		
 		local row, column = nodeFromCoordinates(hitX, hitY)
