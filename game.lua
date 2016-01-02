@@ -199,7 +199,7 @@ function gameLoveUpdate()
 end
 
 function gameLoveMousepressed(x, y, button)
-	if(button == "r") then
+	if(button == 2) then
 		endGameReason = "quit"
 		mode = "endGame"
 	else
@@ -336,6 +336,10 @@ function gameLoveMousepressed(x, y, button)
 			nextColorSeed = nextColorSeed + 1
 		until (allClear or availableColors[nextColorId] == true)
 	end
+end
+
+function gameLoveWheelmoved()
+	
 end
 
 function gameLoveKeypressed(key)

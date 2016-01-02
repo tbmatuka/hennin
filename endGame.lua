@@ -131,16 +131,20 @@ function endGameLoveDraw()
 end
 
 function endGameLoveMousepressed(x, y, button)
-	if(button == "l") then
+	if(button == 1) then
 		mode = "game"
 		if(endGameReason ~= "quit") then
 			gameNewGame()
 		else
 			gameLoveResize()
 		end
-	elseif(button == "r") then
+	elseif(button == 2) then
 		mode = "menu"
 	end
+end
+
+function endGameLoveWheelmoved()
+	
 end
 
 function endGameLoveKeypressed(key)

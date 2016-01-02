@@ -101,13 +101,19 @@ function menuLoveDraw()
 end
 
 function menuLoveMousepressed(x, y, button)
-	if(button == "l") then
+	if(button == 1) then
 		menuSelectOption()
-	elseif(button == "r") then
+	elseif(button == 2) then
 		menuCloseMenu()
-	elseif(button == 'wu') then
+	end
+end
+
+function menuLoveWheelmoved(x, y)
+	if(y > 0) then
+		-- scroll up
 		menuHighlightPrevious()
-	elseif(button == 'wd') then
+	elseif(y < 0) then
+		-- scroll down
 		menuHighlightNext()
 	end
 end

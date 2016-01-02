@@ -28,7 +28,7 @@ dofile("endGame.lua")
 
 function love.load()
 	love.window.setTitle("Hennin")
-	love.window.setMode(love.window.getWidth(), love.window.getHeight(), { fsaa = 2, minwidth = 800, minheight = 600, resizable = true })
+	love.window.setMode(love.graphics.getWidth(), love.graphics.getHeight(), { msaa = 2, minwidth = 800, minheight = 600, resizable = true })
 
 	mode = "game"
 	mode = "menu"
@@ -60,6 +60,16 @@ function love.mousepressed(x, y, button)
 		menuLoveMousepressed(x, y, button)
 	elseif(mode == "endGame") then
 		endGameLoveMousepressed(x, y, button)
+	end
+end
+
+function love.wheelmoved(x, y)
+	if(mode == "game") then
+		gameLoveWheelmoved(x, y)
+	elseif(mode == "menu") then
+		menuLoveWheelmoved(x, y)
+	elseif(mode == "endGame") then
+		endGameLoveWheelmoved(x, y)
 	end
 end
 
